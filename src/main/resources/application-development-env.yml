@@ -15,9 +15,19 @@ spring:
               scopes:
                 - products:read
                 - products:write
-                - products:stock:read
+                - products:stock:write
                 - categories:read
                 - categories:write
+                - invoices:read
+                - invoices:write
+                - credit-cards:read
+                - credit-cards:write
+                - orders:read
+                - orders:write
+                - customers:read
+                - customers:write
+                - shopping-carts:read
+                - shopping-carts:write
             token:
               access-token-time-to-live: 15m
               access-token-format: self-contained
