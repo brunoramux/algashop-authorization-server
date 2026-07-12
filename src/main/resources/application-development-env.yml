@@ -1,4 +1,7 @@
 spring:
+  session:
+    store-type: jdbc
+    timeout: 30m
   datasource:
     url: jdbc:postgresql://localhost:5432/authorization_server
     username: postgres
@@ -71,6 +74,7 @@ spring:
                 - client_secret_basic
               redirect-uris:
                 - http://algashop-ecommerce:9080/login/oauth2/code/algashop-ecommerce-web
+                - https://oauth.pstmn.io/v1/callback
               post-logout-redirect-uris:
                 - http://algashop-ecommerce:9080/
               scopes:
