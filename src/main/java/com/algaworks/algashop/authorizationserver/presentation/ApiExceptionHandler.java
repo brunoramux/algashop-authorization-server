@@ -1,5 +1,6 @@
 package com.algaworks.algashop.authorizationserver.presentation;
 
+import com.algaworks.algashop.authorizationserver.application.user.management.AuthUserAlreadyExistsException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;
@@ -63,6 +64,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         problemDetail.setTitle("Forbidden");
         problemDetail.setDetail(e.getMessage());
         problemDetail.setType(URI.create("/errors/forbidden"));
+        return problemDetail;
+    }
+
+    @ExceptionHandler(AuthUserAlreadyExistsException.class)
+    public ProblemDetail handleAuthUserAlreadyExistsException(AuthUserAlreadyExistsException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.CONFLICT);
+        problemDetail.setTitle("Conflict");
+        problemDetail.setDetail(e.getMessage());
+        problemDetail.setType(URI.create("/errors/conflict"));
         return problemDetail;
     }
 }
